@@ -1,0 +1,14 @@
+.sign-in{
+   /*padding: 0px 40px 10px 30px;*/
+   max-width:600px;
+   border-radius: 10px;
+   text-align:center;
+}
+
+.align{
+  text-align:left;
+}
+
+sup {
+  color:red;
+}
