@@ -12,3 +12,11 @@
 sup {
   color:red;
 }
+
+.has-error{
+  border: 1 px solid red;
+}
+
+.has-success{
+  border:none;
+}

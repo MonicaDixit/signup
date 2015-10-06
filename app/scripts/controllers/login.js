@@ -9,11 +9,13 @@
  */
   angular.module('signupApp').controller('LoginCtrl',  ['$scope', 'LoginService', '$location',
     function ($scope, LoginService, $location ) {
+
+      $scope.errpassword = false;
       $scope.userdata = {
         email: '',
         fname: '',
         pass: '',
-        confpaas: ''
+        confpass: ''
 
       };
 
@@ -23,15 +25,21 @@
       $scope.checkconfpass = function(){
         if($scope.userdata.pass !== $scope.userdata.confpass){
           console.log('check pass');
-            $scope.err = "Passwords do not match"
+          console.log('inside check pass userdata' , $scope.userdata);
+            $scope.errpassword = true;
+
             //$location.path('/');
+        }
+
+        else{
+           $scope.errpassword = false;
         }
     };
      
       $scope.showuserprofile = function(){
         LoginService.setuser($scope.userdata);
       $location.path('/about');
-     }
+     };
 
   }]);
   
