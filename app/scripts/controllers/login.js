@@ -24,14 +24,6 @@
       console.log('in login js userdata' , $scope.userdata);
 
       $scope.clearform = function(){
-        //$scope.checkage = function(){
-        console.log(moment($scope.userdata.bdate).format());
-        var age = moment($scope.userdata.bdate).fromNow(true).replace(" years", "");
-        console.log(age);
-
-        if (age < 3 || age > 150){
-          alert('wrong date');
-        }
         
         if(confirm('Are you sure you want to clear the form?')){
           $scope.userdata = {
@@ -45,10 +37,16 @@
         }
       };
 
-      $scope.checkage = function(){
-        console.log(moment($scope.userdata.bdate).format());
-        //var age = moment($scope.userdata.bdate).format()).fromNow();
-      }
+      $scope.validage = function(){
+        var age = moment($scope.userdata.bdate).fromNow(true).replace(" years", "");
+        console.log(age);
+        console.log('in valid age method');
+
+        if (age < 14 || age > 150){
+          $scope.invalidage = true;
+        }
+        
+      };
 
      
       $scope.showuserprofile = function(){
