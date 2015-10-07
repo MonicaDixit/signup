@@ -1,39 +1,53 @@
 
 <div class="container panel panel-default jumbotron">
   <div><h2 class="page-header">USER ACCOUNT</h2></div>
-  <form name="signinform" ng-submit="showuserprofile(signinform.$valid)" novalidate>
+  <form name="signinform" ng-submit="showuserprofile()" novalidate>
     <p class="panel-heading">Register</p>
-    <div class="form-group">
+    <!--EMAIL -->
+    <div class="form-group" ng-class="{ 'has-error' : signinform.email.$invalid && !signinform.email.$pristine }">
         <label>Email<sup>*</sup></label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Email" 
-            ng-model="userdata.email" ng-maxlength='56'>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Email" 
+            ng-model="userdata.email" ng-maxlength='56' required>
+          <p ng-show="signinform.email.$invalid && !signinform.email.$pristine" class="help-block">Please enter a valid email</p>
+          <p ng-show="signinform.email.$error.maxlength && !signinform.email.$pristine" class="help-block">Email is too long.</p>
     </div>
-    <div class="form-group">
+    <!--PASSWORD-->
+    <div class="form-group" ng-class="{'has-error': signinform.password.$invalid && !signinform.password.$pristine }">
       <label>Password<sup>*</sup></label>
-        <input type="password" class="form-control" required id="inputPassword" placeholder="Password" ng-model="userdata.pass" ng-minlength='6'>
+        <input type="password" class="form-control" id="password" name= "password" placeholder="Password" ng-model="userdata.pass" 
+        ng-minlength='6' required>
+         <p ng-show="signinform.password.$invalid && !signinform.password.$pristine" class="help-block">This is a required field</p>
+          <p ng-show="signinform.password.$error.minlength && !signinform.password.$pristine" class="help-block">Password is too short</p>
     </div>
-    <div class="form-group">
+    <!--CONFIRM PASSWORD-->
+    <div class="form-group" ng-class="{'has-error' : signinform.confpass.$invalid && !signinform.confpass.$pristine}">
       <label>Reenter Password<sup>*</sup></label>
-        <input type="password" class="form-control" required id="confirmPassword" placeholder="Password" ng-model="userdata.confpass" ng-blur="checkconfpass()" 
-        ng-class="{'has-error':$scope.errpassword , 'has-success':!$scope.errpassword}">
+        <input type="password" class="form-control" id="confpass" name="confpass" placeholder="Password" ng-model="userdata.confpass" ng-minlength='6'required>
+         <p ng-show="signinform.confpass.$invalid && !signinform.confpass.$pristine" class="help-block">Please make an entry in this field</p>
+         <p ng-show="signinform.confpass.$error.minlength && !signinform.confpass.$pristine" class="help-block">Minimum 6 characters needed for the password</p>
+         <p ng-show="signinform.confpass !== '' && (signinform.confpass !== signinform.password)" class="help-block">Passwords do not match</p>
     </div>
-    <div class="form-group">
+    <!--FIRST NAME-->
+    <div class="form-group" ng-class="{'has-error' : signinform.fname.$invalid && !signinform.fname.$pristine}">
       <label>First Name<sup>*</sup></label>
-        <input type="text" class="form-control" required id="fname" placeholder="First Name" 
-        ng-model="userdata.fname" ng-blur="checkfname()" ng-maxlength="50">
+        <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" 
+        ng-model="userdata.fname" ng-maxlength="50" required>
+         <p ng-show="signinform.fname.$invalid && !signinform.fname.$pristine" class="help-block">Please enter your first name</p>
+          <p ng-show="signinform.fname.$error.maxlength && !signinform.fname.$pristine" class="help-block">Name is too long.</p>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-class="{'has-error': signinform.lname.$error.maxlength && !signinform.lname.$pristine}">
       <label>Last Name</label>
-        <input type="text" class="form-control" id="lname" placeholder="Last Name" 
+        <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" 
         ng-model="userdata.lname" ng-blur="checklname()" ng-maxlength="50">
+        <p ng-show="signinform.lname.$error.maxlength && !signinform.lname.$pristine" class="help-block">Name is too long.</p>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-class="{'has-error': signinform.bdate.$invalid && !signinform.bdate.$pristine}">
       <label>Date of Birth<sup>*</sup></label>
-        <input type="date" class="form-control" required id="bdate" name="bdate" 
-         ng-model="userdata.bdate" ng-blur="checkbday()">
+        <input type="date" class="form-control" id="bdate" name="bdate" ng-model="userdata.bdate" required>
+         <p ng-show="signinform.bdate.$invalid && !signinform.bdate.$pristine" class="help-block">Birthdate is a required field.</p>
     </div>
     <div class="form-group" style="text-align:center">
-      <button type="submit" class="btn btn-lg btn-primary" ng-click="userdata.login()">Sign up</button>
+      <button type="submit" class="btn btn-lg btn-primary" ng-click="userdata.login()" ng-disabled="signinform.$invalid">Sign up</button>
     </div>
 </form>
 </div>
