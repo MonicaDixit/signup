@@ -15,36 +15,39 @@
         email: '',
         fname: '',
         pass: '',
-        confpass: ''
+        confpass: '',
+        bdate: ''
 
       };
 
 
       console.log('in login js userdata' , $scope.userdata);
 
-      $scope.checkconfpass = function(){
-        if($scope.userdata.pass !== $scope.userdata.confpass){
-          console.log('check pass');
-          console.log('inside check pass userdata' , $scope.userdata);
-            $scope.errpassword = true;
-
-            //$location.path('/');
-        }
-        else{
-           $scope.errpassword = false;
-        }
-      };
-
       $scope.clearform = function(){
+        //$scope.checkage = function(){
+        console.log(moment($scope.userdata.bdate).format());
+        var age = moment($scope.userdata.bdate).fromNow(true).replace(" years", "");
+        console.log(age);
+
+        if (age < 3 || age > 150){
+          alert('wrong date');
+        }
+        
         if(confirm('Are you sure you want to clear the form?')){
           $scope.userdata = {
           email: '',
           fname: '',
           pass: '',
-          confpass: ''
+          confpass: '',
+          bdate: ''
         };
           $scope.signinform.$setPristine();
         }
+      };
+
+      $scope.checkage = function(){
+        console.log(moment($scope.userdata.bdate).format());
+        //var age = moment($scope.userdata.bdate).format()).fromNow();
       }
 
      
