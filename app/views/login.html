@@ -35,6 +35,7 @@
          <p ng-show="signinform.fname.$invalid && !signinform.fname.$pristine" class="help-block">Please enter your first name</p>
           <p ng-show="signinform.fname.$error.maxlength && !signinform.fname.$pristine" class="help-block">Name is too long.</p>
     </div>
+    <!--LAST NAME -->
     <div class="form-group" ng-class="{'has-error': signinform.lname.$error.maxlength && !signinform.lname.$pristine}">
       <label>Last Name</label>
         <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" 
