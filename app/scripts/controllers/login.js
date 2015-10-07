@@ -30,11 +30,23 @@
 
             //$location.path('/');
         }
-
         else{
            $scope.errpassword = false;
         }
-    };
+      };
+
+      $scope.clearform = function(){
+        if(confirm('Are you sure you want to clear the form?')){
+          $scope.userdata = {
+          email: '',
+          fname: '',
+          pass: '',
+          confpass: ''
+        };
+          $scope.signinform.$setPristine();
+        }
+      }
+
      
       $scope.showuserprofile = function(){
         LoginService.setuser($scope.userdata);

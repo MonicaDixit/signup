@@ -1,6 +1,6 @@
 
 <div class="container panel panel-default jumbotron">
-  <div><h2 class="page-header">USER ACCOUNT</h2></div>
+  <!-- <div><h2 class="page-header">USER ACCOUNT</h2></div> -->
   <form name="signinform" ng-submit="showuserprofile()" novalidate>
     <p class="panel-heading">Register</p>
     <!--EMAIL -->
@@ -25,7 +25,7 @@
         <input type="password" class="form-control" id="confpass" name="confpass" placeholder="Password" ng-model="userdata.confpass" ng-minlength='6'required>
          <p ng-show="signinform.confpass.$invalid && !signinform.confpass.$pristine" class="help-block">Please make an entry in this field</p>
          <p ng-show="signinform.confpass.$error.minlength && !signinform.confpass.$pristine" class="help-block">Minimum 6 characters needed for the password</p>
-         <p ng-show="signinform.confpass !== '' && (signinform.confpass !== signinform.password)" class="help-block">Passwords do not match</p>
+         <p ng-show="signinform.confpass !== '' && !signinform.confpass.$pristine && (signinform.confpass !== signinform.password)" class="help-block">Passwords do not match</p>
     </div>
     <!--FIRST NAME-->
     <div class="form-group" ng-class="{'has-error' : signinform.fname.$invalid && !signinform.fname.$pristine}">
@@ -48,7 +48,8 @@
          <p ng-show="signinform.bdate.$invalid && !signinform.bdate.$pristine" class="help-block">Birthdate is a required field.</p>
     </div>
     <div class="form-group" style="text-align:center">
-      <button type="submit" class="btn btn-lg btn-primary" ng-click="userdata.login()" ng-disabled="signinform.$invalid">Sign up</button>
+      <button type="submit" class="btn btn-lg btn-primary" ng-click="userdata.login()" ng-disabled="signinform.$invalid">Sign up</button>&nbsp;&nbsp;
+      <button type="button" class="btn btn-lg btn-danger" ng-click="clearform()">Clear</button>
     </div>
 </form>
 </div>
