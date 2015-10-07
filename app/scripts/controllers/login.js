@@ -9,6 +9,7 @@
  */
   angular.module('signupApp').controller('LoginCtrl',  ['$scope', 'LoginService', '$location',
     function ($scope, LoginService, $location ) {
+      $scope.nameRegex =  /^[A-Za-z]+$/;
 
       $scope.errpassword = false;
       $scope.userdata = {
